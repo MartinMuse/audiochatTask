@@ -53,21 +53,24 @@ const initialState: ISpeakersState = {
 }
 
 export const SpeakersReducer = (state = initialState, action: SpeakerActionType): ISpeakersState => {
-    let speakers = initialState.speakers
     switch (action.type) {
         case SET_IS_SPEAKING:
+            let speakers = initialState.speakers
             const index = initialState.speakers.findIndex((el) => el.data.id === action.payload.id)
             if (index !== -1) {
-                speakers[index].actions.isSpeaking = action.payload.isSpeaks
+                speakers[index].actions.isSpeaking = action.payload.isSpeaking
                 return {
                     speakers: speakers
                 }
-            } else return state
+            } else{
+                return state
+            }
         case ADD_SPEAKER:
             return {
                 speakers: [...state.speakers, action.payload.speaker]
             }
         default:
+            console.log('a')
             return state
     }
 };
@@ -77,7 +80,7 @@ export const speaksAction = (id: number, isSpeaking: boolean): ISpeaksAction => 
         type: SET_IS_SPEAKING,
         payload: {
             id: id,
-            isSpeaks: isSpeaking
+            isSpeaking: isSpeaking
         }
     }
 }

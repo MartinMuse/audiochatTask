@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {addSpeakerAction, ISpeaker, speaksAction} from "../../Redux/Reducers/speakersReducer";
 import {deleteListenerAction, IListener, setSpeakRequestAction} from "../../Redux/Reducers/listenersReducer";
 import {Speaker} from "../Partisipants/Speaker";
@@ -22,8 +22,11 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
     const requestListeners = listeners.filter((el) => el.actions.speakRequest)
     const notRequestListeners = listeners.filter((el) => !el.actions.speakRequest)
     const currentUser = speakers[0]// установка текущего пользователя
-    const dispatch = useDispatch()
+    const [isSpeaking, setIsSpeaking] = useState(false)
 
+    if (currentUser.data.role === 'speaker')
+        currentUser.actions.isSpeaking = isSpeaking
+    const dispatch = useDispatch()
     const setSpeakerHandler = (id: number) => {
         const listener = listeners.find(el => el.data.id === id)
         if (listener) {
@@ -43,18 +46,18 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
         dispatch(setSpeakRequestAction(id))
     }
 
-
+//Микрофон здесь
     if (currentUser.data.role === 'speaker')
         navigator.mediaDevices.getUserMedia({audio: true}).then(micStream => {
             const volumeMeter = new VolumeMeter(micStream);
             setInterval(() => {
                 const volume = (volumeMeter.getVolume())
-                if (volume > 12) {
-                    dispatch(speaksAction(currentUser.data.id, true))
-                } else if (volume < 2) {
-                    dispatch(speaksAction(currentUser.data.id, false))
+                if (volume > 20) {          //настройка громкости
+                    setIsSpeaking(true)
+                } else if (volume <= 2) {
+                    setIsSpeaking(false)
                 }
-            }, 40);
+            }, 300);
         });
 
     const speakersElements = speakers.map((el) => <li>
@@ -96,7 +99,7 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
         <div className={'audiochat-container'}>
             <div className={"users-container"}>
                 <div className="usersBlock">
-                    <h1>Speakers</h1>
+                    <h1>{`${isSpeaking}`}</h1>
                     <ul className="speakers-list">
                         {speakersElements}
                         {
@@ -109,7 +112,7 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
                                         setRequest={setRequesterHandler}
                                     />
                                 </li>
-                                :<></>
+                                : <></>
                         }
                     </ul>
                 </div>

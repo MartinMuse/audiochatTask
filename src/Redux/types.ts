@@ -26,7 +26,7 @@ export interface ISpeaksAction {
     type: typeof SET_IS_SPEAKING,
     payload: {
         id: number,
-        isSpeaks: boolean
+        isSpeaking: boolean
     }
 }
 

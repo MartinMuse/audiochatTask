@@ -21,7 +21,7 @@ const Chat: FC<IChat> = ({currentUserRole}) => {
             setValue('')
         }
 
-        const messagesElements = messages.map((el) => <Message title={el.title} time={el.time}/>)
+        const messagesElements = messages.map((el) => <Message key={Date.now()} title={el.title} time={el.time}/>)
 
         return (
             <div className="chatContainer">
