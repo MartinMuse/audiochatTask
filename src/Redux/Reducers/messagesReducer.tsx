@@ -2,7 +2,8 @@ import {ISentMessageAction, MessageActionType, SENT_MESSAGE} from "../types";
 
 export interface IMessage {
     title: string,
-    time: string
+    time: string,
+    id: number
 }
 
 export interface IMessagesState {
@@ -25,12 +26,13 @@ export const MessageReducer = (state = initialState, action: MessageActionType):
 };
 
 
-export const sentMessageAction = (title: string, time: string): ISentMessageAction => {
+export const sentMessageAction = (title: string, time: string, id: number): ISentMessageAction => {
     return {
         type: SENT_MESSAGE,
         payload: {
             title: title,
-            time: time
+            time: time,
+            id: id
         }
     }
 }

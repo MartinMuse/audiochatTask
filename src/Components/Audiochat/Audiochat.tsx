@@ -8,7 +8,7 @@ import VolumeMeter from "../../VolumeMeter";
 import {useDispatch} from "react-redux";
 import {Requester} from "../Partisipants/Requester";
 import {RequestButton} from "../Partisipants/RequestButton";
-import Chat from "../Chat/Chat";
+import {Chat} from "../Chat/Chat";
 
 interface IAudioChatProps {
     speakers: Array<ISpeaker>,
@@ -60,37 +60,33 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
             }, 300);
         });
 
-    const speakersElements = speakers.map((el) => <li>
+    const speakersElements = speakers.map((el) => <li key={el.data.id}>
         <Speaker
             data={el.data}
             actions={el.actions}
-            key={el.data.id}
         />
     </li>)
 
-    const listenersElements = notRequestListeners.map(el => <li>
+    const listenersElements = notRequestListeners.map(el => <li key={el.data.id}>
         <Listener
             data={el.data}
             actions={el.actions}
-            key={el.data.id}
         />
     </li>)
 
     const requestersElements = requestListeners.map(el => (
         currentUser.data.role === 'speaker'
-            ? <li>
+            ? <li key={el.data.id}>
                 <Requester
                     data={el.data}
                     actions={el.actions}
-                    key={el.data.id}
                     setSpeaker={setSpeakerHandler}
                 />
             </li>
-            : <li>
+            : <li key={el.data.id}>
                 <Listener
                     data={el.data}
                     actions={el.actions}
-                    key={el.data.id}
                 />
             </li>))
 
@@ -108,7 +104,6 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
                                 ? <li>
                                     <RequestButton
                                         id={currentUser.data.id}
-                                        key={currentUser.data.id}
                                         setRequest={setRequesterHandler}
                                     />
                                 </li>

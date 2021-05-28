@@ -41,7 +41,8 @@ export interface ISentMessageAction {
     type:typeof SENT_MESSAGE,
     payload:{
         title:string,
-        time:string
+        time:string,
+        id: number
     }
 }
 
