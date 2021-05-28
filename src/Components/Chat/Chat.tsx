@@ -16,12 +16,13 @@ const Chat: FC<IChat> = ({currentUserRole}) => {
 
         const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
+            console.log('wwww')
             const time = new Date()
             dispatch(sentMessageAction(value, `${time.getHours()} ${time.getMinutes()}`))
             setValue('')
         }
 
-        const messagesElements = messages.map((el) => <Message key={Date.now()} title={el.title} time={el.time}/>)
+        const messagesElements = messages.map((el) => <Message key={el.time} title={el.title} time={el.time}/>)
 
         return (
             <div className="chatContainer">

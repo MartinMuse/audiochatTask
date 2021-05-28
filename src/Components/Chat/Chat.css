@@ -5,12 +5,12 @@
   flex-direction: column;
   background-color: lightseagreen;
   border-radius: 5px;
-  overflow-y: auto;
-  overflow-x: hidden;
   margin-left: 4px;
 }
 
 .messages-container{
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 4px;
   display: flex;
   flex-direction: column;

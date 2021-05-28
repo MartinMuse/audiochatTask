@@ -99,7 +99,7 @@ const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
         <div className={'audiochat-container'}>
             <div className={"users-container"}>
                 <div className="usersBlock">
-                    <h1>{`${isSpeaking}`}</h1>
+                    <h1>Speakers</h1>
                     <ul className="speakers-list">
                         {speakersElements}
                         {
