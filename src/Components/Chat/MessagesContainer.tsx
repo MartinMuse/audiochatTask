@@ -8,9 +8,6 @@ interface IProps {
 
 const MessagesContainer: FC<IProps> = (props) => {
     const messagesElements = props.messages.map((el) => {
-        console.log(
-            'ddd'
-        )
         return <Message key={el.id} title={el.title} time={el.time}/>
     })
 

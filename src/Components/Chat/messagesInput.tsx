@@ -15,7 +15,6 @@ export const ChatInput: FC = () => {
             dispatch(sentMessageAction(value, `${time.getHours()} ${time.getMinutes()}`,Date.now()))
             setValue('')
         }
-
         return (
           <form className={"chatContainer-form"} onSubmit={(e) => submitHandler(e)}>
                 <input type={"text"} value={value} onChange={(e) => setValue(e.target.value)}

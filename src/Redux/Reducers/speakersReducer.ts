@@ -70,7 +70,6 @@ export const SpeakersReducer = (state = initialState, action: SpeakerActionType)
                 speakers: [...state.speakers, action.payload.speaker]
             }
         default:
-            console.log('a')
             return state
     }
 };
