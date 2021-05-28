@@ -1,9 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import './App.css';
 import {useSelector} from "react-redux";
 import {rootState} from "../Redux/store";
 import Audiochat from "./Audiochat/Audiochat";
-import {Chat} from "./Chat/Chat";
 
 const App: FC = () => {
     const {speakers} = useSelector((state: rootState) => state.speakers)

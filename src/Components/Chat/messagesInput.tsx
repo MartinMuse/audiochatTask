@@ -1,9 +1,7 @@
-import React, {FC, useEffect, useState} from 'react';
-import {IMessage, IMessagesState, sentMessageAction} from "../../Redux/Reducers/messagesReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {rootState} from "../../Redux/store";
+import React, {FC, useState} from 'react';
+import {sentMessageAction} from "../../Redux/Reducers/messagesReducer";
+import {useDispatch} from "react-redux";
 import './Chat.css'
-import {Message} from "./Message";
 
 export const ChatInput: FC = () => {
         const [value, setValue] = useState('')

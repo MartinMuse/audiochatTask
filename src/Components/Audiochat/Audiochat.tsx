@@ -1,5 +1,5 @@
-import React, {FC, useEffect, useState} from 'react';
-import {addSpeakerAction, ISpeaker, speaksAction} from "../../Redux/Reducers/speakersReducer";
+import React, {FC, useState} from 'react';
+import {addSpeakerAction, ISpeaker} from "../../Redux/Reducers/speakersReducer";
 import {deleteListenerAction, IListener, setSpeakRequestAction} from "../../Redux/Reducers/listenersReducer";
 import {Speaker} from "../Partisipants/Speaker";
 import {Listener} from "../Partisipants/Listener";

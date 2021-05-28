@@ -1,9 +1,7 @@
-import React, {FC, useEffect, useState} from 'react';
-import {IMessage, IMessagesState, sentMessageAction} from "../../Redux/Reducers/messagesReducer";
-import {useDispatch, useSelector} from "react-redux";
+import React, {FC} from 'react';
+import {useSelector} from "react-redux";
 import {rootState} from "../../Redux/store";
 import './Chat.css'
-import {Message} from "./Message";
 import {ChatInput} from "./messagesInput";
 import MessagesContainer from "./MessagesContainer";
 
