@@ -1,18 +1,50 @@
 import {Participant} from "./Participant";
 import './partisipants.css'
-import {ISpeaker} from "../../Redux/Reducers/speakersReducer";
+import React from "react";
+import VolumeMeter from "../../VolumeMeter";
 
 
-export class Speaker extends Participant<ISpeaker,{}>{
-    // shouldComponentUpdate(nextProps: Readonly<ISpeaker>, nextState: Readonly<{}>, nextContext: any): boolean {
-    //     return this.props.actions.isSpeaking===nextProps.actions.isSpeaking
-    // }
+interface ISpeakerProps {
+    name: string,
+    surname: string,
+    isCurrentUser: boolean
+}
+
+interface ISpeakerState {
+    isSpeaking: boolean
+}
+
+
+class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
+    constructor(props: ISpeakerProps) {
+        super(props);
+        this.state = {
+            isSpeaking: false
+        }
+    }
 
     render = () => {
+        if (this.props.isCurrentUser)
+            navigator.mediaDevices.getUserMedia({audio: true}).then(micStream => {
+                const volumeMeter = new VolumeMeter(micStream);
+                setInterval(() => {
+                    const volume = (volumeMeter.getVolume())
+                    if (volume > 20) {
+                        return this.setState({
+                            isSpeaking: true
+                        })
+                    } else if (volume < 5)
+                        return this.setState({
+                            isSpeaking: false
+                        })
+                }, 270);
+            });
         return (
-            <div className={`speaker-item ${this.props.actions.isSpeaking ? 'active' : ''}`}>
-                <span>{`${this.props.data.name[0]} ${this.props.data.surname[0]}`}</span>
+            <div className={`speaker-item ${this.state.isSpeaking && this.props.isCurrentUser ? 'active' : ''}`}>
+                <span>{`${this.props.name[0]} ${this.props.surname[0]}`}</span>
             </div>
         )
     }
 }
+
+export default Speaker
