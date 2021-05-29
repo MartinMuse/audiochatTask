@@ -22,14 +22,13 @@ class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
             isSpeaking: false
         }
     }
-
     render = () => {
         if (this.props.isCurrentUser)
             navigator.mediaDevices.getUserMedia({audio: true}).then(micStream => {
                 const volumeMeter = new VolumeMeter(micStream);
                 setInterval(() => {
                     const volume = (volumeMeter.getVolume())
-                    if (volume > 20) {
+                    if (volume > 17) {
                         return this.setState({
                             isSpeaking: true
                         })
