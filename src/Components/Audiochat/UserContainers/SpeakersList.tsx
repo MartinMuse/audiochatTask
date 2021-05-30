@@ -4,7 +4,6 @@ import React, {FC, useState} from "react";
 import {RequestButton} from "../../Partisipants/RequestButton";
 import {setSpeakRequestAction} from "../../../Redux/Reducers/listenersReducer";
 import {useDispatch} from "react-redux";
-import VolumeMeter from "../../../VolumeMeter";
 
 interface SpeakersContainerProps {
     speakers: Array<ISpeaker>,
@@ -12,7 +11,6 @@ interface SpeakersContainerProps {
 }
 
 const SpeakersList: FC<SpeakersContainerProps> = ({speakers, currentUser}) => {
-    const [isSpeaking, setIsSpeaking] = useState(false)
     const dispatch = useDispatch()
     const setRequesterHandler = (id: number) => {
         dispatch(setSpeakRequestAction(id))

@@ -1,16 +1,12 @@
-import {ISpeaker} from "../../../Redux/Reducers/speakersReducer";
-import Speaker from "../../Partisipants/Speaker";
 import React, {FC} from "react";
-import {RequestButton} from "../../Partisipants/RequestButton";
-import {IListener, setSpeakRequestAction} from "../../../Redux/Reducers/listenersReducer";
-import {useDispatch} from "react-redux";
+import {IListener} from "../../../Redux/Reducers/listenersReducer";
 import {Listener} from "../../Partisipants/Listener";
 
-interface SpeakersContainerProps {
+interface ListenersContainerProps {
     listeners: Array<IListener>,
 }
 
-const ListenersList: FC<SpeakersContainerProps> = ({listeners}) => {
+const ListenersList: FC<ListenersContainerProps> = ({listeners}) => {
     const notRequestListeners = listeners.filter((el) => !el.actions.speakRequest)
     const listenersElements = notRequestListeners.map(el => <li key={el.data.id}>
         <Listener

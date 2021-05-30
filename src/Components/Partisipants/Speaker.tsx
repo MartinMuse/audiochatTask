@@ -22,6 +22,7 @@ class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
             isSpeaking: false
         }
     }
+
     render = () => {
         if (this.props.isCurrentUser)
             navigator.mediaDevices.getUserMedia({audio: true}).then(micStream => {
@@ -39,9 +40,14 @@ class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
                 }, 270);
             });
         return (
-            <div className={`speaker-item ${this.state.isSpeaking && this.props.isCurrentUser ? 'active' : ''}`}>
-                <span>{`${this.props.name[0]} ${this.props.surname[0]}`}</span>
-            </div>
+            this.state.isSpeaking && this.props.isCurrentUser ?
+                <div className={`speaker-item active`}>
+                    <span>{`${this.props.name[0]} ${this.props.surname[0]}`}</span>
+                </div> :
+                <div className={`speaker-item`}>
+                    <span>{`${this.props.name[0]} ${this.props.surname[0]}`}</span>
+                </div>
+
         )
     }
 }

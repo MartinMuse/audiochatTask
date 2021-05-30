@@ -1,18 +1,16 @@
-import {addSpeakerAction, ISpeaker} from "../../../Redux/Reducers/speakersReducer";
-import Speaker from "../../Partisipants/Speaker";
+import {addSpeakerAction} from "../../../Redux/Reducers/speakersReducer";
 import React, {FC} from "react";
-import {RequestButton} from "../../Partisipants/RequestButton";
-import {deleteListenerAction, IListener, setSpeakRequestAction} from "../../../Redux/Reducers/listenersReducer";
+import {deleteListenerAction, IListener} from "../../../Redux/Reducers/listenersReducer";
 import {useDispatch} from "react-redux";
 import {Listener} from "../../Partisipants/Listener";
 import {Requester} from "../../Partisipants/Requester";
 
-interface SpeakersContainerProps {
+interface ReqListenersContainerProps {
     listeners: Array<IListener>,
     currentUserRole?: string
 }
 
-const RequestedListenersList: FC<SpeakersContainerProps> = ({listeners,currentUserRole}) => {
+const RequestedListenersList: FC<ReqListenersContainerProps> = ({listeners,currentUserRole}) => {
     const dispatch=useDispatch()
     const requestListeners = listeners.filter((el) => el.actions.speakRequest)
     const setSpeakerHandler = (id: number) => {
