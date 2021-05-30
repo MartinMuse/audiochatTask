@@ -29,7 +29,7 @@ class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
                 const volumeMeter = new VolumeMeter(micStream);
                 setInterval(() => {
                     const volume = (volumeMeter.getVolume())
-                    if (volume > 17) {
+                    if (volume > 20) {
                         return this.setState({
                             isSpeaking: true
                         })
@@ -37,7 +37,7 @@ class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
                         return this.setState({
                             isSpeaking: false
                         })
-                }, 270);
+                }, 100);
             });
         return (
             this.state.isSpeaking && this.props.isCurrentUser ?
