@@ -23,22 +23,25 @@ class Speaker extends Participant<ISpeakerProps, ISpeakerState> {
         }
     }
 
-    render = () => {
+    componentDidMount() {
         if (this.props.isCurrentUser)
             navigator.mediaDevices.getUserMedia({audio: true}).then(micStream => {
                 const volumeMeter = new VolumeMeter(micStream);
                 setInterval(() => {
                     const volume = (volumeMeter.getVolume())
-                    if (volume > 20) {
+                    if (volume > 10) {
                         return this.setState({
                             isSpeaking: true
                         })
-                    } else if (volume < 5)
-                        return this.setState({
-                            isSpeaking: false
-                        })
-                }, 100);
+                    }
+                    this.setState({
+                        isSpeaking: false
+                    })
+                }, 200);
             });
+    }
+
+    render = () => {
         return (
             this.state.isSpeaking && this.props.isCurrentUser ?
                 <div className={`speaker-item active`}>

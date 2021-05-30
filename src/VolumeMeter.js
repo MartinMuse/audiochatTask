@@ -23,8 +23,8 @@ class VolumeMeter {
   createAnalyzer(stream) {
     let audioContext = this.createAudioContext();
     this.analyser = audioContext.createAnalyser();
-    let audioSorceNode = audioContext.createMediaStreamSource(stream);
-    audioSorceNode.connect(this.analyser);
+    let audioSourceNode = audioContext.createMediaStreamSource(stream);
+    audioSourceNode.connect(this.analyser);
     this.array = new Uint8Array(this.analyser.frequencyBinCount);
   }
 
@@ -35,6 +35,7 @@ class VolumeMeter {
     for (let i = 0; i < length; i++) {
       total += this.array[i];
     }
+
     return total / length;
   }
 }
