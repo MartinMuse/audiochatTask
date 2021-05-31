@@ -10,8 +10,10 @@ export const ChatInput: FC = () => {
         const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
             const time = new Date()
-            dispatch(sentMessageAction(value, `${time.getHours()} ${time.getMinutes()}`,Date.now()))
-            setValue('')
+            if (value.length!==0){
+                dispatch(sentMessageAction(value, `${time.getHours()} ${time.getMinutes()}`, Date.now()))
+                setValue('')
+            }
         }
         return (
           <form className={"chatContainer-form"} onSubmit={(e) => submitHandler(e)}>
