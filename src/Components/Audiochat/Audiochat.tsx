@@ -14,7 +14,7 @@ interface IAudioChatProps {
 }
 
 const Audiochat: FC<IAudioChatProps> = ({speakers, listeners}) => {
-    const currentUser = speakers[1]// установка текущего пользователя из массивов listeners и speakers
+    const currentUser = speakers[0]// установка текущего пользователя из массивов listeners и speakers
     return (
         <div className={'audiochat-container'}>
             <div className={"users-container"}>
