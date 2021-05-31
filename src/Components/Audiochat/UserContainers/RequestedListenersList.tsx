@@ -17,12 +17,15 @@ const RequestedListenersList: FC<ReqListenersContainerProps> = ({listeners,curre
         const listener = listeners.find(el => el.data.id === id)
         if (listener) {
             const newSpeaker = {
-                data: listener.data,
-                actions: {
-                    isSpeaking: false,
-                    isActive: false
+                data:{
+                    ...listener.data,
+                    role:'speaker'
+                },
+                actions:{
+                    isSpeaking:false
                 }
             }
+            newSpeaker.data.role='speaker'
             dispatch(addSpeakerAction(newSpeaker))
             dispatch(deleteListenerAction(newSpeaker.data.id))
         }

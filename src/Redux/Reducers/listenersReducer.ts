@@ -40,6 +40,7 @@ export const initialState: IListenersState = {
                 id: 1234,
                 name: "Tony",
                 surname: "Montana",
+                role: 'listener'
             },
             actions: {
                 speakRequest: true,
@@ -49,6 +50,7 @@ export const initialState: IListenersState = {
                 id: 2345,
                 name: "John",
                 surname: "McClane",
+                role: 'listener'
             },
             actions: {
                 speakRequest: false,

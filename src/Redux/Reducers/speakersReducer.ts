@@ -15,7 +15,6 @@ export interface ISpeaker {
     },
     actions: {
         isSpeaking: boolean,
-        isActive: boolean
     }
 }
 
@@ -35,7 +34,6 @@ const initialState: ISpeakersState = {
             },
             actions: {
                 isSpeaking: true,
-                isActive: true
             }
         },
         {
@@ -43,10 +41,10 @@ const initialState: ISpeakersState = {
                 id: 3456,
                 name: "Vito",
                 surname: "Corleone",
+                role: 'speaker'
             },
             actions: {
                 isSpeaking: false,
-                isActive: false
             }
         },
     ],
