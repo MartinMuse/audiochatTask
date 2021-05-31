@@ -7,7 +7,7 @@ import VolumeMeter from "../../VolumeMeter";
 interface ISpeakerProps {
     name: string,
     surname: string,
-    isCurrentUser: boolean
+    isCurrentUser?: boolean
 }
 
 interface ISpeakerState {

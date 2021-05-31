@@ -14,7 +14,7 @@ export const Chat: FC<IChat> = ({currentUserRole}) => {
     return (
         <div className="chatContainer">
             <MessagesContainer messages={messages}/>
-            <ChatInput/>
+            {currentUserRole === 'speaker' && <ChatInput/>}
         </div>
     );
 }

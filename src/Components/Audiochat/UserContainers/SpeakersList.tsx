@@ -2,12 +2,12 @@ import {ISpeaker} from "../../../Redux/Reducers/speakersReducer";
 import Speaker from "../../Partisipants/Speaker";
 import React, {FC} from "react";
 import {RequestButton} from "../../Partisipants/RequestButton";
-import {setSpeakRequestAction} from "../../../Redux/Reducers/listenersReducer";
+import {IListener, setSpeakRequestAction} from "../../../Redux/Reducers/listenersReducer";
 import {useDispatch} from "react-redux";
 
 interface SpeakersContainerProps {
     speakers: Array<ISpeaker>,
-    currentUser:ISpeaker
+    currentUser:ISpeaker|IListener
 }
 
 const SpeakersList: FC<SpeakersContainerProps> = ({speakers, currentUser}) => {
@@ -15,6 +15,7 @@ const SpeakersList: FC<SpeakersContainerProps> = ({speakers, currentUser}) => {
     const setRequesterHandler = (id: number) => {
         dispatch(setSpeakRequestAction(id))
     }
+
 
     const speakersElements = speakers.map((el) => <li key={el.data.id}>
         <Speaker
@@ -31,7 +32,7 @@ const SpeakersList: FC<SpeakersContainerProps> = ({speakers, currentUser}) => {
                 {speakersElements}
                 {
                     // @ts-ignore
-                    currentUser.data.role !== 'speaker' && !currentUser.data.speakRequest
+                    currentUser.data.role !== 'speaker' && !currentUser.actions.speakRequest
                         ? <li>
                             <RequestButton
                                 id={currentUser.data.id}
