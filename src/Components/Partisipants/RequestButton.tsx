@@ -1,6 +1,5 @@
 import {Participant} from "./Participant";
 import './partisipants.css'
-import {IListener} from "../../Redux/Reducers/listenersReducer";
 
 
 interface IRequesterProps {
@@ -17,6 +16,4 @@ export class RequestButton extends Participant<IRequesterProps, {}> {
             </div>
         )
     }
-
-
 }

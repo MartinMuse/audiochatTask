@@ -1,6 +1,6 @@
 import {ISpeaker} from "../../../Redux/Reducers/speakersReducer";
 import Speaker from "../../Partisipants/Speaker";
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {RequestButton} from "../../Partisipants/RequestButton";
 import {setSpeakRequestAction} from "../../../Redux/Reducers/listenersReducer";
 import {useDispatch} from "react-redux";
